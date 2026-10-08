@@ -1,0 +1,19 @@
+{
+  "dataset": "fictional-phase4-v1",
+  "sources": [
+    {"id": "reimbursement", "title": "Employee reimbursement required documents", "chunk": "reimbursement-docs"},
+    {"id": "gst", "title": "GST claim conditions for fictional medical expenses", "chunk": "gst-conditions"},
+    {"id": "project", "title": "Project code assignment procedure", "chunk": "project-code"},
+    {"id": "restricted", "title": "Other department confidential procedure", "chunk": "unauthorized-chunk", "authorized": false}
+  ],
+  "queries": [
+    {"id": "po", "query": "PO DO", "query_type": "english_exact", "required_mode": "FTS_ONLY", "acceptable_chunks": ["reimbursement-docs"]},
+    {"id": "rewrite", "query": "Which paperwork is needed for an expense claim?", "query_type": "english_paraphrase", "required_mode": "HYBRID", "acceptable_chunks": ["reimbursement-docs"]},
+    {"id": "zh", "query": "报销时还缺什么文件", "query_type": "zh_to_en", "required_mode": "HYBRID", "acceptable_chunks": ["reimbursement-docs"]},
+    {"id": "mixed", "query": "medical expense 的 GST 可以申报吗", "query_type": "mixed", "required_mode": "HYBRID", "acceptable_chunks": ["gst-conditions"]},
+    {"id": "gst", "query": "GST", "query_type": "acronym", "required_mode": "FTS_ONLY", "acceptable_chunks": ["gst-conditions"]},
+    {"id": "code", "query": "Project Code PRJ-001", "query_type": "identifier", "required_mode": "FTS_ONLY", "acceptable_chunks": ["project-code"]},
+    {"id": "irrelevant", "query": "office cafeteria menu", "query_type": "negative", "required_mode": "HYBRID", "acceptable_chunks": []},
+    {"id": "unauthorized", "query": "confidential other department procedure", "query_type": "permission_negative", "required_mode": "HYBRID", "acceptable_chunks": []}
+  ]
+}

@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --brand-navy: #0b1f4b;
+  --brand-green: #258b57;
+  --brand-green-hover: #1d7548;
+  --brand-green-light: #eaf6ef;
+  --background: #f5f8fb;
+  --surface: #ffffff;
+  --border: #dce4ed;
+  --text-primary: #0b1f4b;
+  --text-secondary: #647493;
+  --action-blue: #075fe4;
+  --shadow-card: 0 4px 18px rgba(31, 57, 90, 0.065);
+}
+
+@theme inline {
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-light: var(--brand-green-light);
+  --color-page: var(--background);
+  --color-surface: var(--surface);
+  --color-line: var(--border);
+  --color-muted-blue: var(--text-secondary);
+  --color-action: var(--action-blue);
+  --font-sans: var(--font-inter), Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  color: var(--text-primary);
+  background: var(--background);
+  font-family: var(--font-inter), Arial, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+button, input { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+::selection { background: #cbe9d8; }
+
+.focus-ring:focus-visible {
+  outline: 3px solid rgba(37, 139, 87, .25);
+  outline-offset: 2px;
+}
+.card-shadow { box-shadow: var(--shadow-card); }
+.construction-art {
+  background-image: url('/construction-silhouette.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}

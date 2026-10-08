@@ -1,0 +1,26 @@
+name: sionggpt-integration-gate
+
+services:
+  postgres-test:
+    image: pgvector/pgvector:pg16
+    container_name: sionggpt-test-postgres
+    environment:
+      POSTGRES_DB: sionggpt_test
+      POSTGRES_USER: sionggpt_test_user
+      POSTGRES_PASSWORD: ${SIONGGPT_TEST_DB_PASSWORD:?set SIONGGPT_TEST_DB_PASSWORD at runtime}
+    ports:
+      - "127.0.0.1:55432:5432"
+    volumes:
+      - sionggpt_test_pgdata:/var/lib/postgresql/data
+      - ./postgres-test-init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U sionggpt_test_user -d sionggpt_test"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+      start_period: 5s
+    restart: "no"
+
+volumes:
+  sionggpt_test_pgdata:
+    name: sionggpt_test_pgdata_phase45

@@ -1,0 +1,15 @@
+**/node_modules
+**/.next
+**/out
+**/__pycache__
+**/.pytest_cache
+**/.venv
+*.log
+.env*
+!.env.example
+!.env.integration.example
+.DS_Store
+*.tsbuildinfo
+
+# Local credential material must never be committed.
+文件/数据库密码.docx
